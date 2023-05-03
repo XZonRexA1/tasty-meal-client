@@ -11,7 +11,7 @@ const Cards = () => {
   console.log(chefData);
   return (
     <>
-    <h2 className="mt-4 font-extrabold text-3xl text-orange-700 mx-auto">Our Chefs</h2>
+    <h2 className="mt-4 font-extrabold text-3xl text-orange-700 mx-4 rounded py-4 bg-black ">Our Chefs</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {chefData.map((chefInfo) => (
           <Card key={chefInfo.id} chefInfo={chefInfo}></Card>

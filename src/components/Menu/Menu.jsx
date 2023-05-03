@@ -3,7 +3,7 @@ import menuPhoto from "../../../public/menuPhoto.avif";
 const Menu = () => {
   return (
     <>
-      <h2 className="mt-4 font-extrabold text-3xl text-orange-700 mx-auto">
+      <h2 className="mt-4 font-extrabold text-3xl text-orange-700  bg-orange-300 py-2 mx-4 rounded">
         Menus
       </h2>
       <div className="grid md:grid-cols-2 mt-12 gap-x-4 mx-4">
