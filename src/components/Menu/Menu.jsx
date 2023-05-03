@@ -6,10 +6,10 @@ const Menu = () => {
       <h2 className="mt-4 font-extrabold text-3xl text-orange-700 mx-auto">
         Menus
       </h2>
-      <div className="flex mt-12 gap-x-44 mx-4">
+      <div className="grid md:grid-cols-2 mt-12 gap-x-4 mx-4">
         <img className="h-50 rounded" src={menuPhoto} alt="Menu Photo" />
         <div>
-          <h2 className="text-3xl font-extrabold text-left">
+          <h2 className="text-3xl mt-8 md:mt-0 font-extrabold text-left">
             Browse our traditional menus <br /> or let us create something new
             for you!!!
           </h2>
@@ -24,7 +24,7 @@ const Menu = () => {
             <li>Kids Menu</li>
             <li>Vegetarian Menu</li>
             <li>Vegan Menu</li>
-            <li>Gluten-free Menu</li>
+        
           </ol>
         </div>
       </div>
