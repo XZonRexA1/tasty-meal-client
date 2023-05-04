@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 
 const Login = () => {
-  const { singIn } = useContext(AuthContext);
+  const { singIn, signInWithGoogle } = useContext(AuthContext);
   const [error, setError] = useState(null);
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -14,6 +14,16 @@ const Login = () => {
     const password = form.password.value;
 
     singIn(email, password)
+      .then((result) => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
+  };
+  const handleSignWithGoogle = () => {
+    signInWithGoogle()
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
@@ -70,6 +80,7 @@ const Login = () => {
               <div className="m-2">Or</div>
               <div className="flex mt-4 md:mt-0">
                 <button
+                onClick={handleSignWithGoogle}
                   type="button"
                   className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline mr-2"
                 >
