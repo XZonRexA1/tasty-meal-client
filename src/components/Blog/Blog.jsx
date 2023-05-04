@@ -35,7 +35,7 @@ const Blog = () => {
         logic used across multiple components. They can be used to abstract
         complex logic and make code more modular and reusable.
       </p>
-      {/* I was tyring to use it but the npm instal react-to-pdf package not installing */}
+      {/* I was trying to use it but the npm instal react-to-pdf package did not install showing some error  */}
       {/* <PDFDownloadLink
         fileName="blog.pdf"
         className="text-blue-500 hover:underline cursor-pointer"
