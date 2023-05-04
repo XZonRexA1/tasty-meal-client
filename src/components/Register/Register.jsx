@@ -1,11 +1,39 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 const Register = () => {
-    const [error, setError] = useState(null);
-    const handleSubmit = () => {
+  const { user, createUser } = useContext(AuthContext);
 
+  const [error, setError] = useState("");
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const form = event.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(name, email, password);
+
+    // error
+
+    setError("");
+    if (password.length < 6) {
+      setError("Password must be 6 characters or longer");
+      return;
     }
+
+    createUser(email, password)
+      .then((result) => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+        form.reset();
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
+  };
+
   return (
     <div>
       <div className="min-h-screen mx-4 rounded bg-gray-100 flex items-center justify-center">
@@ -81,7 +109,7 @@ const Register = () => {
                 type="submit"
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline"
               >
-                Login
+                Register
               </button>
             </div>
             <div>
@@ -90,7 +118,7 @@ const Register = () => {
                 Login
               </Link>
             </div>
-            <div>{error}</div>
+            <div style={{color: 'red'}}>{error}</div>
           </form>
         </div>
       </div>

@@ -18,9 +18,9 @@ const Header = () => {
         {user && (
           <img
             className=" w-8 h-8 rounded-full"
-            title={user.displayName}
-            src={user.photoURL}
-            alt="user image"
+            title={user?.displayName ? user?.displayName : user.email}
+            src={user?.photoURL}
+           
           />
         )}
         {user ? (

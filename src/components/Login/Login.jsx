@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 
 const Login = () => {
-  const { singIn, signInWithGoogle, signInWithGithub } =
+  const { signIn, signInWithGoogle, signInWithGithub } =
     useContext(AuthContext);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState('');
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -15,10 +15,11 @@ const Login = () => {
     const password = form.password.value;
 
     // normal email and password logging
-    singIn(email, password)
+    signIn(email, password)
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
+        form.reset();
       })
       .catch((error) => {
         setError(error.message);
@@ -119,7 +120,7 @@ const Login = () => {
                 Register
               </Link>
             </div>
-            <div>{error}</div>
+            <div style={{color: 'red'}}>{error}</div>
           </form>
         </div>
       </div>
