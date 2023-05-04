@@ -1,4 +1,6 @@
 import React from "react";
+// import { PDFDownloadLink } from "@react-pdf/renderer";
+
 
 const Blog = () => {
   return (
@@ -33,6 +35,15 @@ const Blog = () => {
         logic used across multiple components. They can be used to abstract
         complex logic and make code more modular and reusable.
       </p>
+      {/* I was tyring to use it but the npm instal react-to-pdf package not installing */}
+      {/* <PDFDownloadLink
+        fileName="blog.pdf"
+        className="text-blue-500 hover:underline cursor-pointer"
+      >
+        {({ blob, url, loading, error }) =>
+          loading ? "Loading document..." : "Download PDF"
+        }
+      </PDFDownloadLink> */}
     </div>
   );
 };

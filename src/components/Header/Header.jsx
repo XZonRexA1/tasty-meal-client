@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
+import ActiveLink from "../ActiveLink/ActiveLink";
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -11,10 +12,10 @@ const Header = () => {
   };
   return (
     <div className="bg-orange-700 text-white p-4 rounded md:flex justify-between m-4 text-left md:items-center">
-      <h3 className="font-semibold text-3xl font-mono">TastyMeal</h3>
+      <Link to="/"><h3 className="font-semibold text-3xl font-mono">TastyMeal</h3></Link>
       <nav className="flex items-center space-x-4 font-mono">
-        <Link to="/">Home</Link>
-        <Link to="/blog">Blog</Link>
+        <ActiveLink to="/">Home</ActiveLink>
+        <ActiveLink to="/blog">Blog</ActiveLink>
         {user && (
           <img
             className=" w-8 h-8 rounded-full"
@@ -26,9 +27,9 @@ const Header = () => {
         {user ? (
           <button onClick={handleLogOut}>Logout</button>
         ) : (
-          <Link to="/login">
+          <ActiveLink to="/login">
             <button>Login</button>
-          </Link>
+          </ActiveLink>
         )}
       </nav>
     </div>
