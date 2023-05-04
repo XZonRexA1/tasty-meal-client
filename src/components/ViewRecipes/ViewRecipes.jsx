@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ViewRecipes = () => {
   const { viewRecipesId } = useParams();
@@ -33,14 +35,19 @@ const ViewRecipes = () => {
     rating,
   } = chefRecipeData;
 
+  const [isFavorite, setIsFavorite] = useState(false);
 
+  const handleFavoriteClick = () => {
+    toast("My Favorite Recipe");
+    setIsFavorite(true);
+  };
   return (
     <div>
       <div className="max-w-lg mx-auto bg-orange-500 rounded p-8">
         <div className="mb-8">
           <img
             src={chef_picture}
-            alt='chef picture'
+            alt="chef picture"
             className="w-64 h-64 rounded-md mx-auto mb-4"
           />
           <h2 className="text-3xl font-bold text-center mb-2">{chef_name}</h2>
@@ -86,6 +93,16 @@ const ViewRecipes = () => {
             <li className="text-left list-none">{cm}</li>
           ))}
         </div>
+        <button
+          onClick={handleFavoriteClick}
+          disabled={isFavorite}
+          className={`rounded-lg bg-orange-800 hover:bg-orange-300 w-22 font-bold md:mx-24 text-orange-200 px-4 py-2 mt-4 text-1xl ${
+            isFavorite ? "opacity-50 cursor-default" : ""
+          }`}
+        >
+          {isFavorite ? "Added to favorites" : "Favorite"}
+        </button>
+        <ToastContainer></ToastContainer>
       </div>
     </div>
   );
