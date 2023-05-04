@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import LazyLoad from "react-lazy-load";
+import { Link, useLoaderData } from "react-router-dom";
 
 const Card = ({ chefInfo }) => {
   const {
@@ -7,16 +9,19 @@ const Card = ({ chefInfo }) => {
     years_of_experience,
     number_of_recipes,
     likes,
-    id,
+    _id,
   } = chefInfo;
   return (
     <>
       <div className="relative m-4 py-4 flex flex-col text-left bg-black rounded-md">
-        <img
-          className="w-40 h-40 m-4 rounded-md"
-          src={chef_picture}
-          alt="chef picturer"
-        />
+        {/* lazy loader added */}
+        <LazyLoad height={200}>
+          <img
+            className="w-40 h-40 m-4 rounded-md"
+            src={chef_picture}
+            alt="chef picturer"
+          />
+        </LazyLoad>
         <h2 className="font-bold uppercase mx-4 text-orange-600">Chef Name</h2>
         <div className="mx-4 text-orange-400 ">
           <em>{chef_name}</em>
@@ -40,12 +45,16 @@ const Card = ({ chefInfo }) => {
             Likes
           </span>
         </div>
-        <button
-          className="rounded-lg bg-orange-500
+        <LazyLoad>
+          <Link to={`/viewRecipes/${_id}`}>
+            <button
+              className="rounded-lg bg-orange-500
       hover:bg-orange-300 w-28 mx-4 md:mx-56  text-white px-2 py-2 mt-2 text-1xl"
-        >
-          View Recipes
-        </button>
+            >
+              View Recipes
+            </button>
+          </Link>
+        </LazyLoad>
       </div>
     </>
   );
