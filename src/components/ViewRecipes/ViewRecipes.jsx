@@ -77,16 +77,16 @@ const ViewRecipes = () => {
           <div className="text-center font-bold font-mono text-2xl">
             Ingredients
           </div>
-          {ingredients?.map((id) => (
-            <li className="text-left">{id}</li>
+          {ingredients?.map((id, index) => (
+            <li key={index} className="text-left">{id}</li>
           ))}
         </div>
         <div>
           <div className="text-center mb-4 font-bold mt-4 font-mono text-2xl">
             How to Cook this Recipe
           </div>
-          {cooking_method?.map((cm) => (
-            <li className="text-left list-none">{cm}</li>
+          {cooking_method?.map((cm,index) => (
+            <li key={index} className="text-left list-none">{cm}</li>
           ))}
         </div>
         <button
