@@ -15,11 +15,16 @@ const Header = () => {
       <nav className="flex items-center space-x-4 font-mono">
         <Link to="/">Home</Link>
         <Link to="/blog">Blog</Link>
-       {
-        user && <img className=" w-8 h-8 " title={user.displayName} src={user.photoURL} alt='user image' />
-       }
+        {user && (
+          <img
+            className=" w-8 h-8 "
+            title={user.displayName}
+            src={user.photoURL}
+            alt="user image"
+          />
+        )}
         {user ? (
-          <button>Logout</button>
+          <button onClick={handleLogOut}>Logout</button>
         ) : (
           <Link to="/login">
             <button>Login</button>
