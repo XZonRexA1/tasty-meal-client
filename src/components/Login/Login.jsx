@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 
 const Login = () => {
-  const { singIn, signInWithGoogle } = useContext(AuthContext);
+  const { singIn, signInWithGoogle, signInWithGithub } =
+    useContext(AuthContext);
   const [error, setError] = useState(null);
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -13,6 +14,7 @@ const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
 
+    // normal email and password logging
     singIn(email, password)
       .then((result) => {
         const loggedUser = result.user;
@@ -22,6 +24,8 @@ const Login = () => {
         setError(error.message);
       });
   };
+
+  // logging with google
   const handleSignWithGoogle = () => {
     signInWithGoogle()
       .then((result) => {
@@ -32,9 +36,22 @@ const Login = () => {
         setError(error.message);
       });
   };
+
+  // logging with github
+
+  const handleSignWithGithub = () => {
+    signInWithGithub()
+      .then((result) => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
+  };
   return (
     <div>
-      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+      <div className="min-h-screen mx-4 rounded bg-gray-100 flex items-center justify-center">
         <div className="bg-white p-8 rounded-lg shadow-md">
           <h2 className="text-2xl font-bold mb-6">Login</h2>
           <form onSubmit={handleSubmit}>
@@ -80,13 +97,14 @@ const Login = () => {
               <div className="m-2">Or</div>
               <div className="flex mt-4 md:mt-0">
                 <button
-                onClick={handleSignWithGoogle}
+                  onClick={handleSignWithGoogle}
                   type="button"
                   className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline mr-2"
                 >
                   Google
                 </button>
                 <button
+                  onClick={handleSignWithGithub}
                   type="button"
                   className="bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline"
                 >

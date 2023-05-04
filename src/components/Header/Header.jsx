@@ -17,7 +17,7 @@ const Header = () => {
         <Link to="/blog">Blog</Link>
         {user && (
           <img
-            className=" w-8 h-8 "
+            className=" w-8 h-8 rounded-full"
             title={user.displayName}
             src={user.photoURL}
             alt="user image"
