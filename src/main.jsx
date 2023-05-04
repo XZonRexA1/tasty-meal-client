@@ -9,6 +9,7 @@ import ViewRecipePage from "./components/ViewRecipes/ViewRecipes.jsx";
 import Layout from "./components/Layout/Layout.jsx";
 import Cards from "./components/Cards/Cards.jsx";
 import ViewRecipes from "./components/ViewRecipes/ViewRecipes.jsx";
+import ErrorPage from "./components/ErrorPage/ErrorPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
     ),
     loader: ({ params }) => fetch("https://tasty-meal-server-me-xzonrexa1.vercel.app/chefDetailsRecipes")
   },
+  {
+    path: '*',
+    element: <ErrorPage></ErrorPage>
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
