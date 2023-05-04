@@ -13,6 +13,8 @@ import ErrorPage from "./components/ErrorPage/ErrorPage.jsx";
 import AuthProvider from "./Providers/AuthProvider.jsx";
 import Login from "./components/Login/Login.jsx";
 import Register from "./components/Register/Register.jsx";
+import PrivateRoute from "./routes/PrivateRoute.jsx";
+import Blog from "./components/Blog/Blog.jsx";
 
 const router = createBrowserRouter([
   {
@@ -26,9 +28,11 @@ const router = createBrowserRouter([
   {
     path: "viewRecipes/:viewRecipesId",
     element: (
-      <Layout>
-        <ViewRecipes></ViewRecipes>
-      </Layout>
+      <PrivateRoute>
+        <Layout>
+          <ViewRecipes></ViewRecipes>
+        </Layout>
+      </PrivateRoute>
     ),
     loader: ({ params }) =>
       fetch(
@@ -37,11 +41,27 @@ const router = createBrowserRouter([
   },
   {
     path: "login",
-    element: <Layout><Login></Login></Layout>,
+    element: (
+      <Layout>
+        <Login></Login>
+      </Layout>
+    ),
   },
   {
-    path: 'register',
-    element: <Layout><Register></Register></Layout>
+    path: "register",
+    element: (
+      <Layout>
+        <Register></Register>
+      </Layout>
+    ),
+  },
+  {
+    path: "blog",
+    element: (
+      <Layout>
+        <Blog></Blog>
+      </Layout>
+    ),
   },
   {
     path: "*",

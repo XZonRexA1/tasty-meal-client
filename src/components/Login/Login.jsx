@@ -1,11 +1,22 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 
 const Login = () => {
   const { signIn, signInWithGoogle, signInWithGithub } =
     useContext(AuthContext);
-  const [error, setError] = useState('');
+
+  // navigate
+  const navigate = useNavigate();
+  // error state
+  const [error, setError] = useState("");
+
+  // location
+
+  const location = useLocation();
+  console.log(location)
+  const from = location.state?.from?.pathname || "/";
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -19,7 +30,7 @@ const Login = () => {
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
-        form.reset();
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         setError(error.message);
@@ -32,6 +43,7 @@ const Login = () => {
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
+        navigate(from, { replace: true })
       })
       .catch((error) => {
         setError(error.message);
@@ -45,6 +57,7 @@ const Login = () => {
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
+        navigate(from, { replace: true })
       })
       .catch((error) => {
         setError(error.message);
@@ -120,7 +133,7 @@ const Login = () => {
                 Register
               </Link>
             </div>
-            <div style={{color: 'red'}}>{error}</div>
+            <div style={{ color: "red" }}>{error}</div>
           </form>
         </div>
       </div>
